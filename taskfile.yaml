@@ -1,0 +1,10 @@
+version: "3"
+tasks:
+  build:
+    cmds:
+      - find ./build -type f -delete
+      - mkdir -p ./build/json
+      - |
+        solc --combined-json abi,bin,bin-runtime,srcmap,srcmap-runtime,ast --pretty-json \
+          ./contracts/*.sol > "./build/json/combined.json"
+      # - abigen --combined-json "./build/json/combined.json" --pkg dlt --out "./build/dlt/combined.go"
